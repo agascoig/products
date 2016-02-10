@@ -1,0 +1,62 @@
+Linear Regression: An RStudio Shiny Application
+========================================================
+author: Alex Gascoigne
+date: February 10th, 2015
+font-family: 'Helvetica'
+
+The application: Variables that affect Miles Per Gallon (MPG) according to a simple linear model.
+
+https://agascoig.shinyapps.io/products/
+
+Linear Regression with User-Specified Regressors
+========================================================
+
+The 1974 mtcars dataset is used to determine what
+factors affect MPG.  The Shiny App allows the user
+to select the regressors. For this presentation, we
+select horsepower and weight to fit a linear model.
+
+```{r}
+require(datasets)
+data(mtcars)
+fit1<-lm(mpg~wt+hp,data=mtcars)
+```
+
+Plot: How Good is the Fit?
+========================================================
+
+The residuals plot shows we might want to add some
+quadratic or interacting features to the model.
+
+```{r, echo=FALSE}
+plot(fit1$residuals)
+```
+
+This shows that most of the MPG difference is explained
+by weight and horsepower of the vehicles.  The R-squared
+value is 0.8268, compared with 0.869 for a model with
+all parameters fitted.
+
+The Web Application
+========================================================
+
+It is available at https://agascoig.shinyapps.io/products/
+
+The default regressors are weight and horsepower.  The
+user simply checks the regressors of interest, and presses
+the "Run Regression" button.
+
+Then a report is generated which includes a summary
+of the model parameters, including estimate, standard error,
+t value, and p value.  Four plots are generated showing
+residuals vs. fitted, normal Q-Q, Scale-Location,
+and Cook's distance.  Finally, a table showing the complete
+dataset is included at the bottom of the webpage.
+
+Conclusion
+========================================================
+
+RStudio shiny is a powerful tool for bringing R to the
+web.  This application was completed in less than two hours.
+
+
